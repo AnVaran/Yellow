@@ -8,3 +8,11 @@
 
 import Foundation
 
+struct Jogs: Decodable {
+    var date: String?
+    var distance: Float?
+    var id: Int?
+    var time: Int?
+    var user_id: String?
+    
+}

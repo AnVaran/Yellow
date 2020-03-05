@@ -90,6 +90,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrY-Er-w8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="ZBB-am-FP1" customClass="JogsViewController" customModule="YllowTest" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="129" y="24"/>
         </scene>
@@ -290,10 +291,12 @@
                         <outlet property="sadImage" destination="yvM-zS-lkE" id="Q19-0q-dVL"/>
                         <outlet property="sadLable" destination="5EW-EQ-571" id="tP6-gL-zt2"/>
                         <outlet property="tableView" destination="4Fb-3a-ArH" id="Vs2-9z-9EB"/>
+                        <outlet property="viewModel" destination="kJc-bs-RJC" id="caV-cg-3EJ"/>
                         <segue destination="cau-W7-e18" kind="presentation" identifier="newJog" id="nt9-H6-YYg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nV1-70-oI4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="kJc-bs-RJC" customClass="JogsViewModel" customModule="YllowTest" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="912.79999999999995" y="23.838080959520241"/>
         </scene>

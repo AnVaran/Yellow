@@ -12,6 +12,7 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var navigationBar: NavigationBar!
     
+    @IBOutlet var viewModel: JogsViewModel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var sadImage: UIImageView!
@@ -24,6 +25,12 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.fetchJogs {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
         navigationBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,7 +53,7 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        viewModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

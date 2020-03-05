@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60C18CE6155FB6B029AA2306 /* Pods_YllowTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398356ACC389989944B3182C /* Pods_YllowTest.framework */; };
+		8418B11E24117C900095B065 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418B11D24117C900095B065 /* URLs.swift */; };
 		84848507240D9FF100438695 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84848506240D9FF100438695 /* NavigationBar.xib */; };
 		84848509240DA52300438695 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84848508240DA52300438695 /* NavigationBar.swift */; };
 		8484850C240F9ED400438695 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8484850B240F9ED400438695 /* CustomButton.swift */; };
@@ -25,11 +26,13 @@
 		848B9C52240D97BE0018CC04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B9C50240D97BE0018CC04 /* Main.storyboard */; };
 		848B9C54240D97C00018CC04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848B9C53240D97C00018CC04 /* Assets.xcassets */; };
 		848B9C57240D97C00018CC04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B9C55240D97C00018CC04 /* LaunchScreen.storyboard */; };
+		84A388B424116B53007D2D7A /* JogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A388B324116B53007D2D7A /* JogsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		38E68F82AB4A7E44E11B6B7A /* Pods-YllowTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YllowTest.release.xcconfig"; path = "Target Support Files/Pods-YllowTest/Pods-YllowTest.release.xcconfig"; sourceTree = "<group>"; };
 		398356ACC389989944B3182C /* Pods_YllowTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YllowTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8418B11D24117C900095B065 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		84848506240D9FF100438695 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		84848508240DA52300438695 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		8484850B240F9ED400438695 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		848B9C53240D97C00018CC04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848B9C56240D97C00018CC04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848B9C58240D97C00018CC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84A388B324116B53007D2D7A /* JogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsViewModel.swift; sourceTree = "<group>"; };
 		D26A2499163A3EA4CA528A65 /* Pods-YllowTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YllowTest.debug.xcconfig"; path = "Target Support Files/Pods-YllowTest/Pods-YllowTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +116,8 @@
 				84848515240FA7A600438695 /* InfoViewController.swift */,
 				84848519240FBA5B00438695 /* TableViewCell.swift */,
 				8484853D241025E900438695 /* NetworkManager.swift */,
+				84A388B324116B53007D2D7A /* JogsViewModel.swift */,
+				8418B11D24117C900095B065 /* URLs.swift */,
 				8484853F24103C6200438695 /* Model.swift */,
 				8484850A240DA53300438695 /* NavigationBar */,
 				848B9C50240D97BE0018CC04 /* Main.storyboard */,
@@ -255,8 +261,10 @@
 				848B9C4D240D97BE0018CC04 /* SceneDelegate.swift in Sources */,
 				84848516240FA7A600438695 /* InfoViewController.swift in Sources */,
 				8484854024103C6200438695 /* Model.swift in Sources */,
+				84A388B424116B53007D2D7A /* JogsViewModel.swift in Sources */,
 				84848518240FA81A00438695 /* CustomView.swift in Sources */,
 				8484851A240FBA5B00438695 /* TableViewCell.swift in Sources */,
+				8418B11E24117C900095B065 /* URLs.swift in Sources */,
 				84848509240DA52300438695 /* NavigationBar.swift in Sources */,
 				84848510240FA6C800438695 /* JogsViewController.swift in Sources */,
 				84848512240FA70A00438695 /* NewJogViewController.swift in Sources */,

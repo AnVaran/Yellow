@@ -10,46 +10,15 @@ import Foundation
 import UIKit
 import Alamofire
 
-enum Param {
-    case log
-    case add
-    case show
-    case feedback
-    case fetchId
-}
 
-class NetworkManager {
+
+class NetworkManager: NSObject {
     
-    private static let serverUrl = "https://jogtracker.herokuapp.com"
     
+    static private var id: String?
+    static private var access_token: String?
 
     
-    private static func url(_ param: Param) -> String {
-    
-        var newUrl = ""
-        
-        switch param {
-        case .log:
-            newUrl = serverUrl + "/api/v1/auth/uuidLogin"
-            break
-        case .add:
-            newUrl = serverUrl + "/api/v1/data/jog"
-            break
-        case .show:
-            newUrl = serverUrl + "/api/v1/data/sync"
-            break
-        case .feedback:
-            newUrl = serverUrl + "/api/v1/feedback/send"
-            break
-        case .fetchId:
-            newUrl = serverUrl + "/api/v1/auth/user"
-            break
-        default:
-            print("Not avaibale name")
-        }
-        
-        return newUrl
-    }
     
     
     static func postLogin(uuid: String){
@@ -57,7 +26,7 @@ class NetworkManager {
         let param = ["uuid" : "hello"]
         
         
-        AF.request(url(.log), method: .post, parameters: param).validate().responseJSON { responseJSON in
+        AF.request(Url.logUrl(), method: .post, parameters: param).validate().responseJSON { responseJSON in
 
         switch responseJSON.result {
         case .success(let value):
@@ -67,8 +36,12 @@ class NetworkManager {
             
             guard let token = response["access_token"] as? String else { return }
             
-            NetworkManager.fetchId(access_token: token)
+            access_token = token
             
+            NetworkManager.fetchId(access_token: access_token ?? "")
+            NetworkManager.fetchJogs { (a) in
+            
+            }
         case .failure(let error):
             print(error)
         }
@@ -78,7 +51,7 @@ class NetworkManager {
     
         static func fetchId(access_token: String) {
             
-            let fetchUrl = url(.fetchId)
+            let fetchUrl = Url.fetchIdUrl()
             
             let url = URL(string: fetchUrl)
             guard let requestUrl = url else { fatalError() }
@@ -90,18 +63,73 @@ class NetworkManager {
             request.httpMethod = "GET"
         
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-                if let error = error {
-                    print("Error took place \(error)")
-                    return
-                }
-            
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                guard let data = data else { return }
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
                     
+                    guard let jsonObject = json as? [String : Any] else { return }
+                    
+                    guard let response = jsonObject["response"] as? [String : Any] else { return }
+                    
+                    guard let id = response["id"] as? String else { return }
+                    self.id = id
+                    
+                    
+                } catch {
+                    print(error)
                 }
+                
             
             }
             task.resume()
         }
     
+    static func fetchJogs(completion: @escaping ([Jogs])->()) {
+        let fetchUrl = Url.showUrl()
+        let url = URL(string: fetchUrl)
+        guard let requestUrl = url else { fatalError() }
+        
+        var request = URLRequest(url: requestUrl)
+        request.addValue("Bearer \(access_token ?? "")", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+         
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        guard let data = data else { return }
+                 
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                guard let jsonObject = json as? [String : Any] else { return }
+                guard let resp = jsonObject["response"] as? [String : Any] else { return }
+                guard let array = resp["jogs"] as? Array<[String : Any]> else { return }
+                   
+                var jogs = [Jogs]()
+                    
+                for field in array {
+
+                    let jog = Jogs(date: field["date"] as? String,
+                                    distance: field["distance"] as? Float,
+                                    id: field["id"] as? Int,
+                                    time: field["time"] as? Int,
+                                    user_id: field["user_id"] as? String)
+                    
+                    if jog.user_id == self.id {
+                        jogs.append(jog)
+                    }
+                    
+                }
+                print(jogs)
+                
+                completion(jogs)
+                     
+                 } catch {
+                     print(error)
+                 }
+                 
+             
+             }
+             task.resume()
+    }
 }
+
+
