@@ -11,6 +11,8 @@ import UIKit
 class NewJogViewController: UIViewController {
     @IBOutlet weak var navigationBar: NavigationBar!
     
+
+    
     @IBOutlet weak var distanceText: UITextField!
     @IBOutlet weak var timeText: UITextField!
     @IBOutlet weak var dateText: UITextField!
@@ -20,6 +22,13 @@ class NewJogViewController: UIViewController {
          
         navigationBar.delegate = self
         navigationBar.filterButton.setImage(#imageLiteral(resourceName: "filter"), for: .normal)
+    }
+    
+    private func upTextField() {
+        
+        if dateText.clearsOnBeginEditing {
+            
+        }
     }
    
     @IBAction func cancelButton(_ sender: UIButton) {

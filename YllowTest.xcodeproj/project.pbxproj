@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60C18CE6155FB6B029AA2306 /* Pods_YllowTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398356ACC389989944B3182C /* Pods_YllowTest.framework */; };
 		84848507240D9FF100438695 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84848506240D9FF100438695 /* NavigationBar.xib */; };
 		84848509240DA52300438695 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84848508240DA52300438695 /* NavigationBar.swift */; };
 		8484850C240F9ED400438695 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8484850B240F9ED400438695 /* CustomButton.swift */; };
@@ -17,6 +18,8 @@
 		84848516240FA7A600438695 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84848515240FA7A600438695 /* InfoViewController.swift */; };
 		84848518240FA81A00438695 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84848517240FA81A00438695 /* CustomView.swift */; };
 		8484851A240FBA5B00438695 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84848519240FBA5B00438695 /* TableViewCell.swift */; };
+		8484853E241025E900438695 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8484853D241025E900438695 /* NetworkManager.swift */; };
+		8484854024103C6200438695 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8484853F24103C6200438695 /* Model.swift */; };
 		848B9C4B240D97BE0018CC04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B9C4A240D97BE0018CC04 /* AppDelegate.swift */; };
 		848B9C4D240D97BE0018CC04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848B9C4C240D97BE0018CC04 /* SceneDelegate.swift */; };
 		848B9C52240D97BE0018CC04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B9C50240D97BE0018CC04 /* Main.storyboard */; };
@@ -25,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38E68F82AB4A7E44E11B6B7A /* Pods-YllowTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YllowTest.release.xcconfig"; path = "Target Support Files/Pods-YllowTest/Pods-YllowTest.release.xcconfig"; sourceTree = "<group>"; };
+		398356ACC389989944B3182C /* Pods_YllowTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YllowTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84848506240D9FF100438695 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		84848508240DA52300438695 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		8484850B240F9ED400438695 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -35,6 +40,8 @@
 		84848515240FA7A600438695 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		84848517240FA81A00438695 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		84848519240FBA5B00438695 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		8484853D241025E900438695 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8484853F24103C6200438695 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		848B9C47240D97BE0018CC04 /* YllowTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YllowTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848B9C4A240D97BE0018CC04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848B9C4C240D97BE0018CC04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +49,7 @@
 		848B9C53240D97C00018CC04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848B9C56240D97C00018CC04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848B9C58240D97C00018CC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D26A2499163A3EA4CA528A65 /* Pods-YllowTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YllowTest.debug.xcconfig"; path = "Target Support Files/Pods-YllowTest/Pods-YllowTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,12 +57,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C18CE6155FB6B029AA2306 /* Pods_YllowTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B4DC2493458D5F78FF94FD3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D26A2499163A3EA4CA528A65 /* Pods-YllowTest.debug.xcconfig */,
+				38E68F82AB4A7E44E11B6B7A /* Pods-YllowTest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8484850A240DA53300438695 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +87,8 @@
 			children = (
 				848B9C49240D97BE0018CC04 /* YllowTest */,
 				848B9C48240D97BE0018CC04 /* Products */,
+				2B4DC2493458D5F78FF94FD3 /* Pods */,
+				F488CF7755A29C1A3A64F8C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +111,8 @@
 				84848513240FA77F00438695 /* MenuViewController.swift */,
 				84848515240FA7A600438695 /* InfoViewController.swift */,
 				84848519240FBA5B00438695 /* TableViewCell.swift */,
+				8484853D241025E900438695 /* NetworkManager.swift */,
+				8484853F24103C6200438695 /* Model.swift */,
 				8484850A240DA53300438695 /* NavigationBar */,
 				848B9C50240D97BE0018CC04 /* Main.storyboard */,
 				84848517240FA81A00438695 /* CustomView.swift */,
@@ -102,6 +124,14 @@
 			path = YllowTest;
 			sourceTree = "<group>";
 		};
+		F488CF7755A29C1A3A64F8C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				398356ACC389989944B3182C /* Pods_YllowTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 848B9C5B240D97C00018CC04 /* Build configuration list for PBXNativeTarget "YllowTest" */;
 			buildPhases = (
+				5F54E40E9F1DCADD93B7FE47 /* [CP] Check Pods Manifest.lock */,
 				848B9C43240D97BE0018CC04 /* Sources */,
 				848B9C44240D97BE0018CC04 /* Frameworks */,
 				848B9C45240D97BE0018CC04 /* Resources */,
+				DBF14342B66BE8BB9BFDA32D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,16 +201,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F54E40E9F1DCADD93B7FE47 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YllowTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBF14342B66BE8BB9BFDA32D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YllowTest/Pods-YllowTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YllowTest/Pods-YllowTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YllowTest/Pods-YllowTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		848B9C43240D97BE0018CC04 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8484853E241025E900438695 /* NetworkManager.swift in Sources */,
 				8484850E240FA65D00438695 /* InitialViewController.swift in Sources */,
 				848B9C4B240D97BE0018CC04 /* AppDelegate.swift in Sources */,
 				8484850C240F9ED400438695 /* CustomButton.swift in Sources */,
 				848B9C4D240D97BE0018CC04 /* SceneDelegate.swift in Sources */,
 				84848516240FA7A600438695 /* InfoViewController.swift in Sources */,
+				8484854024103C6200438695 /* Model.swift in Sources */,
 				84848518240FA81A00438695 /* CustomView.swift in Sources */,
 				8484851A240FBA5B00438695 /* TableViewCell.swift in Sources */,
 				84848509240DA52300438695 /* NavigationBar.swift in Sources */,
@@ -326,6 +402,7 @@
 		};
 		848B9C5C240D97C00018CC04 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26A2499163A3EA4CA528A65 /* Pods-YllowTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +421,7 @@
 		};
 		848B9C5D240D97C00018CC04 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38E68F82AB4A7E44E11B6B7A /* Pods-YllowTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

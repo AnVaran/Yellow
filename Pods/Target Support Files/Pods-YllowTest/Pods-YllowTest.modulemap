@@ -1,0 +1,6 @@
+framework module Pods_YllowTest {
+  umbrella header "Pods-YllowTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

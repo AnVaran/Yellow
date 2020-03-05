@@ -26,6 +26,8 @@ class InitialViewController: UIViewController {
     
     @IBAction func initialButton(_ sender: UIButton) {
         let uuid = UUID().uuidString
+        NetworkManager.postLogin(uuid: uuid)
+        
     }
 }
 
