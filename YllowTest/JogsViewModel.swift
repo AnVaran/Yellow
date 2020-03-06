@@ -9,24 +9,30 @@
 import UIKit
 
 class JogsViewModel: NSObject {
-
-
-    private var jogs: [Jogs]?
     
+    var jogs = [Jogs]()
     
-    func fetchJogs(completion: @escaping ()->()) {
+    func fetchJogs(completion: @escaping () -> ()) {
         
-        NetworkManager.fetchJogs { (jogs) in
-            
-            self.jogs = jogs
-            //print("\(jogs) ih")
+        NetworkManager.fetchJogs { [weak self] (jogs) in
+            self?.jogs = jogs
             completion()
-            
         }
+    }
+
+    func cell(cell: TableViewCell, indexPath: IndexPath) {
+        
+        let jog = jogs[indexPath.row]
+
+        cell.dateLable?.text = jog.date ?? "Date"
+        cell.distanceLable?.text = String(jog.distance ?? 0) + " km"
+        cell.speedLable?.text = String(Int(jog.distance ?? 0) / (jog.time ?? 1)) + " km/min"
+        cell.timeLable?.text = String(jog.time ?? 0) + " min"
+        
     }
     
     func numberOfRowsInSection() -> Int {
-        return jogs?.count ?? 0
+        return jogs.count
     }
     
 }

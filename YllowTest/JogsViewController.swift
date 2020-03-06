@@ -10,6 +10,7 @@ import UIKit
 
 class JogsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
     @IBOutlet weak var navigationBar: NavigationBar!
     
     @IBOutlet var viewModel: JogsViewModel!
@@ -21,15 +22,16 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var addJog: UIButton!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.fetchJogs {
+        viewModel.fetchJogs { [weak self] in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
+        
         
         navigationBar.delegate = self
         tableView.delegate = self
@@ -51,15 +53,34 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRowsInSection()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+       return viewModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
+        viewModel.cell(cell: cell, indexPath: indexPath) 
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let jok = viewModel.jogs[indexPath.row]
+        let deleteAction = UITableViewRowAction(style: .default, title: "delete") {
+            (_, _) in
+            guard let jog_id = jok.id else { return }
+            NetworkManager.deleteCell(jog_id: jog_id)
+            self.viewModel.jogs.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        return [deleteAction]
     }
 }
 

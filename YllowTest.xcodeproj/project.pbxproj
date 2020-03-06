@@ -27,6 +27,7 @@
 		848B9C54240D97C00018CC04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848B9C53240D97C00018CC04 /* Assets.xcassets */; };
 		848B9C57240D97C00018CC04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848B9C55240D97C00018CC04 /* LaunchScreen.storyboard */; };
 		84A388B424116B53007D2D7A /* JogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A388B324116B53007D2D7A /* JogsViewModel.swift */; };
+		84C8B2122411B36A00A793D1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8B2112411B36A00A793D1 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		848B9C56240D97C00018CC04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848B9C58240D97C00018CC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A388B324116B53007D2D7A /* JogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsViewModel.swift; sourceTree = "<group>"; };
+		84C8B2112411B36A00A793D1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		D26A2499163A3EA4CA528A65 /* Pods-YllowTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YllowTest.debug.xcconfig"; path = "Target Support Files/Pods-YllowTest/Pods-YllowTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				84A388B324116B53007D2D7A /* JogsViewModel.swift */,
 				8418B11D24117C900095B065 /* URLs.swift */,
 				8484853F24103C6200438695 /* Model.swift */,
+				84C8B2112411B36A00A793D1 /* Protocols.swift */,
 				8484850A240DA53300438695 /* NavigationBar */,
 				848B9C50240D97BE0018CC04 /* Main.storyboard */,
 				84848517240FA81A00438695 /* CustomView.swift */,
@@ -269,6 +272,7 @@
 				84848510240FA6C800438695 /* JogsViewController.swift in Sources */,
 				84848512240FA70A00438695 /* NewJogViewController.swift in Sources */,
 				84848514240FA77F00438695 /* MenuViewController.swift in Sources */,
+				84C8B2122411B36A00A793D1 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

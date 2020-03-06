@@ -9,8 +9,8 @@
 import UIKit
 
 class InitialViewController: UIViewController {
-
-    var window: UIWindow?
+    
+    let uuid = UUID().uuidString
     
     @IBOutlet weak var navigationBar: NavigationBar!
 
@@ -18,6 +18,11 @@ class InitialViewController: UIViewController {
    override func viewDidLoad() {
         super.viewDidLoad()
 
+    NetworkManager.postLogin(uuid: "") { (token) in
+        NetworkManager.fetchId(token: token)
+    }
+    
+    
     navigationBar.delegate = self
     navigationBar.filterButton.isHidden = true
     
@@ -25,9 +30,6 @@ class InitialViewController: UIViewController {
     
     
     @IBAction func initialButton(_ sender: UIButton) {
-        let uuid = UUID().uuidString
-        NetworkManager.postLogin(uuid: uuid)
-        
     }
 }
 

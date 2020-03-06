@@ -13,15 +13,11 @@ import Alamofire
 
 
 class NetworkManager: NSObject {
-    
-    
-    static private var id: String?
-    static private var access_token: String?
 
+    static var access_token: String?
+    static var id: String?
     
-    
-    
-    static func postLogin(uuid: String){
+    static func postLogin(uuid: String, completion: @escaping (String) -> ()){
         
         let param = ["uuid" : "hello"]
         
@@ -35,21 +31,21 @@ class NetworkManager: NSObject {
             guard let response = jsonObject["response"] as? [String : Any] else { return }
             
             guard let token = response["access_token"] as? String else { return }
+    
+            self.access_token = token
+            completion(token)
             
-            access_token = token
-            
-            NetworkManager.fetchId(access_token: access_token ?? "")
-            NetworkManager.fetchJogs { (a) in
-            
-            }
         case .failure(let error):
             print(error)
         }
             
         }
+        
+        
     }
     
-        static func fetchId(access_token: String) {
+    static func fetchId(token: String){
+            //var fetchId: String?
             
             let fetchUrl = Url.fetchIdUrl()
             
@@ -57,8 +53,8 @@ class NetworkManager: NSObject {
             guard let requestUrl = url else { fatalError() }
        
             var request = URLRequest(url: requestUrl)
-       
-            request.addValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
+        
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
             request.httpMethod = "GET"
         
@@ -73,8 +69,8 @@ class NetworkManager: NSObject {
                     guard let response = jsonObject["response"] as? [String : Any] else { return }
                     
                     guard let id = response["id"] as? String else { return }
-                    self.id = id
                     
+                    self.id = id
                     
                 } catch {
                     print(error)
@@ -91,13 +87,17 @@ class NetworkManager: NSObject {
         guard let requestUrl = url else { fatalError() }
         
         var request = URLRequest(url: requestUrl)
-        request.addValue("Bearer \(access_token ?? "")", forHTTPHeaderField: "Authorization")
+        
+        guard let token = access_token else { return }
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
          
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         guard let data = data else { return }
                  
             do {
+                //print(response)
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let jsonObject = json as? [String : Any] else { return }
                 guard let resp = jsonObject["response"] as? [String : Any] else { return }
@@ -113,23 +113,53 @@ class NetworkManager: NSObject {
                                     time: field["time"] as? Int,
                                     user_id: field["user_id"] as? String)
                     
-                    if jog.user_id == self.id {
+                    if jog.user_id == "3" {
                         jogs.append(jog)
                     }
                     
                 }
-                print(jogs)
-                
                 completion(jogs)
                      
                  } catch {
                      print(error)
                  }
-                 
-             
-             }
+            }
              task.resume()
     }
+    
+    static func deleteCell(jog_id: Int) {
+        guard let user_id = id else { return }
+         guard let token = access_token else { return }
+        
+        let fetchUrl = Url.addUrl()
+        let url = URL(string: fetchUrl)
+        guard let requestUrl = url else { fatalError() }
+        
+        var request = URLRequest(url: requestUrl)
+        
+        let params = ["user_id" : user_id, "jog_id" : jog_id] as [String : Any]
+
+       
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "DELETE"
+         
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return }
+                 
+            do {
+                //print(response)
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            }
+            catch {
+                print(error)
+            }
+            }
+             task.resume()
+    }
+
+
 }
-
-

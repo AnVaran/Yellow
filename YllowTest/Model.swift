@@ -16,3 +16,7 @@ struct Jogs: Decodable {
     var user_id: String?
     
 }
+
+struct Access_token {
+    var access_token: String?
+}
