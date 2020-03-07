@@ -13,7 +13,6 @@ class JogsViewModel: NSObject {
     var jogs = [Jogs]()
     
     func fetchJogs(completion: @escaping () -> ()) {
-        
         NetworkManager.fetchJogs { [weak self] (jogs) in
             self?.jogs = jogs
             completion()
@@ -26,7 +25,7 @@ class JogsViewModel: NSObject {
 
         cell.dateLable?.text = jog.date ?? "Date"
         cell.distanceLable?.text = String(jog.distance ?? 0) + " km"
-        cell.speedLable?.text = String(Int(jog.distance ?? 0) / (jog.time ?? 1)) + " km/min"
+        cell.speedLable?.text = String(Int(jog.distance  ?? 0) / (jog.time ?? 1)) + " km/min"
         cell.timeLable?.text = String(jog.time ?? 0) + " min"
         
     }

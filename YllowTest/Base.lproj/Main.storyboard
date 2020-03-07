@@ -145,7 +145,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="firstJog:" destination="ofi-dH-Lsx" eventType="touchUpInside" id="4Tg-Eu-mfs"/>
+                                    <segue destination="cau-W7-e18" kind="show" id="SMK-SX-bQG"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Fb-3a-ArH">
@@ -244,7 +244,7 @@
                                             <outlet property="distanceLable" destination="4ot-cw-XRp" id="wAf-Sn-Qjr"/>
                                             <outlet property="speedLable" destination="ztV-M2-C3v" id="7aX-4H-1Th"/>
                                             <outlet property="timeLable" destination="duI-Ku-8Li" id="1Kl-dW-GlI"/>
-                                            <segue destination="cau-W7-e18" kind="presentation" identifier="changeJog" id="ra4-B0-nkx"/>
+                                            <segue destination="cau-W7-e18" kind="show" identifier="changeJog" id="ra4-B0-nkx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -256,7 +256,7 @@
                                 </constraints>
                                 <state key="normal" image="add"/>
                                 <connections>
-                                    <action selector="addButton:" destination="ofi-dH-Lsx" eventType="touchUpInside" id="9Bs-lw-58l"/>
+                                    <action selector="addJog:" destination="ofi-dH-Lsx" eventType="touchUpInside" id="eo2-CG-cav"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -285,14 +285,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="hnP-Vo-kkS"/>
                     <connections>
-                        <outlet property="addJog" destination="URd-Cv-iZ7" id="ijD-ez-FLB"/>
                         <outlet property="firstJog" destination="vQQ-Jl-LeR" id="IMd-To-gzG"/>
                         <outlet property="navigationBar" destination="mKz-dS-WW0" id="aSK-bM-hlJ"/>
                         <outlet property="sadImage" destination="yvM-zS-lkE" id="Q19-0q-dVL"/>
                         <outlet property="sadLable" destination="5EW-EQ-571" id="tP6-gL-zt2"/>
                         <outlet property="tableView" destination="4Fb-3a-ArH" id="Vs2-9z-9EB"/>
                         <outlet property="viewModel" destination="kJc-bs-RJC" id="caV-cg-3EJ"/>
-                        <segue destination="cau-W7-e18" kind="presentation" identifier="newJog" id="nt9-H6-YYg"/>
+                        <segue destination="cau-W7-e18" kind="show" identifier="addJog" id="ZeU-Fa-Nd8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nV1-70-oI4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -382,7 +381,7 @@
             <objects>
                 <viewController id="cau-W7-e18" customClass="NewJogViewController" customModule="YllowTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3lt-ic-C29">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBl-z1-kGS" customClass="NavigationBar" customModule="YllowTest" customModuleProvider="target">
@@ -393,16 +392,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOF-jl-JaP">
-                                <rect key="frame" x="34" y="159" width="307" height="365"/>
+                                <rect key="frame" x="34" y="159" width="307" height="385"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q46-uE-fTn" customClass="CustomView" customModule="YllowTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2" width="307" height="361"/>
+                                        <rect key="frame" x="0.0" y="2" width="307" height="381"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhg-QF-s8U">
                                                 <rect key="frame" x="268" y="21" width="18" height="22"/>
                                                 <state key="normal" image="cancel"/>
                                                 <connections>
-                                                    <action selector="cancelButton:" destination="cau-W7-e18" eventType="touchUpInside" id="U45-Qc-X7j"/>
+                                                    <segue destination="VNI-uY-vUB" kind="unwind" unwindAction="cancelSegue:" id="g5N-Ve-fB9"/>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="RWB-QD-Ksv">
@@ -422,6 +421,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="cau-W7-e18" id="4Em-YG-2Pf"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -442,6 +444,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="cau-W7-e18" id="6Wa-ON-Gzb"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -462,11 +467,14 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="cau-W7-e18" id="JPg-XD-io3"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7L-7r-geM" customClass="CustomButton" customModule="YllowTest" customModuleProvider="target">
-                                                <rect key="frame" x="35" y="290.5" width="237" height="33.5"/>
+                                                <rect key="frame" x="35" y="310.5" width="237" height="33.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="237" id="CgE-MQ-SSQ"/>
                                                 </constraints>
@@ -494,7 +502,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="saveJog:" destination="cau-W7-e18" eventType="touchUpInside" id="J0D-mn-2Zg"/>
+                                                    <segue destination="VNI-uY-vUB" kind="unwind" unwindAction="unwindSegue:" id="02e-St-BFD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -545,10 +553,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="k6b-QN-NZF"/>
                     <connections>
+                        <outlet property="dateText" destination="F2J-jl-Dqa" id="Yz7-uS-Ihc"/>
+                        <outlet property="distanceText" destination="7G1-1t-baX" id="G0M-RL-71M"/>
                         <outlet property="navigationBar" destination="CBl-z1-kGS" id="cNn-XY-ujA"/>
+                        <outlet property="timeText" destination="T1k-l8-aB8" id="I2E-5X-Gb3"/>
+                        <outlet property="upView" destination="fOF-jl-JaP" id="g4D-Nl-ZpT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zl0-bW-07s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="VNI-uY-vUB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1841" y="24"/>
         </scene>
@@ -647,7 +660,7 @@
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nt9-H6-YYg"/>
+        <segue reference="ZeU-Fa-Nd8"/>
         <segue reference="wDe-cM-djC"/>
     </inferredMetricsTieBreakers>
 </document>

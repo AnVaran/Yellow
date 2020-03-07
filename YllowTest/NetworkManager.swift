@@ -87,8 +87,9 @@ class NetworkManager: NSObject {
         guard let requestUrl = url else { fatalError() }
         
         var request = URLRequest(url: requestUrl)
-        
         guard let token = access_token else { return }
+        guard let user_id = id else { return }
+        
         
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
@@ -107,17 +108,22 @@ class NetworkManager: NSObject {
                     
                 for field in array {
 
-                    let jog = Jogs(date: field["date"] as? String,
+                    guard let time = field["date"] as? Double else { return }
+                    
+                    let date = FormatterDate.date(getDate: time)
+                    
+                    let jog = Jogs(date: date,
                                     distance: field["distance"] as? Float,
                                     id: field["id"] as? Int,
                                     time: field["time"] as? Int,
                                     user_id: field["user_id"] as? String)
                     
-                    if jog.user_id == "3" {
+                    if jog.user_id == user_id {
                         jogs.append(jog)
                     }
                     
                 }
+                
                 completion(jogs)
                      
                  } catch {
@@ -127,7 +133,7 @@ class NetworkManager: NSObject {
              task.resume()
     }
     
-    static func deleteCell(jog_id: Int) {
+    static func deleteJog(jog_id: Int) {
         guard let user_id = id else { return }
          guard let token = access_token else { return }
         
@@ -161,5 +167,78 @@ class NetworkManager: NSObject {
              task.resume()
     }
 
+    
+    static func changeJog(date: String, time: Int, distance: Float, jog_id: Int) {
+        guard let user_id = id else { return }
+         guard let token = access_token else { return }
+        
+        let fetchUrl = Url.addUrl()
+        let url = URL(string: fetchUrl)
+        guard let requestUrl = url else { fatalError() }
+        
+        var request = URLRequest(url: requestUrl)
+        
+        let params = ["date" : date,
+                      "time" : time,
+                      "distance" : distance,
+                      "jog_id" : jog_id,
+                      "user_id" : user_id] as [String : Any]
+ 
+       
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "PUT"
+         
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return }
+                 
+            do {
+                //print(response)
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            }
+            catch {
+                print(error)
+            }
+            }
+             task.resume()
+    }
 
+    static func addJog(date: String, time: Int, distance: Float) {
+            guard id != nil else { return }
+            guard let token = access_token else { return }
+           
+           let fetchUrl = Url.addUrl()
+           let url = URL(string: fetchUrl)
+           guard let requestUrl = url else { fatalError() }
+           
+           var request = URLRequest(url: requestUrl)
+           
+           let params = ["date" : date,
+                         "time" : time,
+                         "distance" : distance] as [String : Any]
+    
+          
+           request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+           
+           
+           request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+           request.httpMethod = "POST"
+            
+           let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+               guard let data = data else { return }
+                    
+               do {
+                   //print(response)
+                   let json = try JSONSerialization.jsonObject(with: data, options: [])
+                   print(json)
+               }
+               catch {
+                   print(error)
+               }
+               }
+                task.resume()
+       }
 }

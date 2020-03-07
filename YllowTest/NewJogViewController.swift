@@ -11,32 +11,45 @@ import UIKit
 class NewJogViewController: UIViewController {
     @IBOutlet weak var navigationBar: NavigationBar!
     
-
+    @IBOutlet weak var upView: UIView!
+    
+    var currentJog: Jogs!
+    
     
     @IBOutlet weak var distanceText: UITextField!
     @IBOutlet weak var timeText: UITextField!
     @IBOutlet weak var dateText: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
          
         navigationBar.delegate = self
         navigationBar.filterButton.setImage(#imageLiteral(resourceName: "filter"), for: .normal)
-    }
-    
-    private func upTextField() {
         
-        if dateText.clearsOnBeginEditing {
-            
-        }
+        setUpEditScreen()
     }
    
-    @IBAction func cancelButton(_ sender: UIButton) {
-        dismiss(animated: true)
+    private func setUpEditScreen() {
+        if currentJog != nil {
+            
+            dateText.text = currentJog.date
+            distanceText.text = String(currentJog.distance ?? 0)
+            timeText.text = String(currentJog.time ?? 0)
+        }
     }
     
-    @IBAction func saveJog(_ sender: UIButton) {
-        dismiss(animated: true)
+    func saveJog() {
+        if currentJog != nil {
+            NetworkManager.changeJog(date: dateText.text ?? "",
+                                     time: Int(timeText.text ?? "") ?? 0,
+                                     distance: Float(distanceText.text ?? "") ?? 0,
+                                     jog_id: currentJog.id!)
+        } else {
+            NetworkManager.addJog(date: dateText.text ?? "",
+                                  time: Int(timeText.text ?? "") ?? 0,
+                                  distance: Float(distanceText.text ?? "") ?? 0)
+        }
         
     }
     
@@ -48,4 +61,14 @@ func menuAction() {
     let menuViewController = storyboard.instantiateViewController(identifier: "menuViewController") as! MenuViewController
     self.present(menuViewController, animated: true, completion: nil)
     }
+}
+
+extension NewJogViewController: UITextFieldDelegate {
+       // Hide keybourd for tap  on DONE
+       
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           textField.resignFirstResponder()
+           return true
+       }
+
 }

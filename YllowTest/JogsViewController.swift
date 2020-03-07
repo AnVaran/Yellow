@@ -20,38 +20,52 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var sadLable: UILabel!
     @IBOutlet weak var firstJog: CustomButton!
     
-    @IBOutlet weak var addJog: UIButton!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.fetchJogs { [weak self] in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
-        
+        getData()
         
         navigationBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "changeJog" else { return }
-        guard let destination = segue.destination as? NewJogViewController else { return }
+    private func getData() {
+        viewModel.fetchJogs { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        
+        guard let newJogVC = segue.source as? NewJogViewController else { return }
+        newJogVC.saveJog()
+        tableView.reloadData()
         
     }
     
-    @IBAction func firstJog(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "newJog", sender: self)
+    @IBAction func cancelSegue(_ segue: UIStoryboardSegue) {
     }
     
-    @IBAction func addButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "newJog", sender: self)
+    @IBAction func addJog(_ sender: UIButton) {
+        performSegue(withIdentifier: "addJog", sender: self)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "changeJog" {
+            
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            let jog = viewModel.jogs[indexPath.row]
+            let newJogVC = segue.destination as! NewJogViewController
+            newJogVC.currentJog = jog
+            
+        }
+        
+    }
    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -71,11 +85,11 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let jok = viewModel.jogs[indexPath.row]
+        let jog = viewModel.jogs[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .default, title: "delete") {
             (_, _) in
-            guard let jog_id = jok.id else { return }
-            NetworkManager.deleteCell(jog_id: jog_id)
+            guard let jog_id = jog.id else { return }
+            NetworkManager.deleteJog(jog_id: jog_id)
             self.viewModel.jogs.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
