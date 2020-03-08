@@ -25,7 +25,12 @@ class JogsViewModel: NSObject {
 
         cell.dateLable?.text = jog.date ?? "Date"
         cell.distanceLable?.text = String(jog.distance ?? 0) + " km"
-        cell.speedLable?.text = String(Int(jog.distance  ?? 0) / (jog.time ?? 1)) + " km/min"
+        if jog.time == 0 || jog.time == nil {
+            cell.speedLable?.text = "0 km/min"
+        } else {
+            cell.speedLable?.text = String(Int(jog.distance  ?? 0) / (jog.time!)) + " km/min"
+        }
+        
         cell.timeLable?.text = String(jog.time ?? 0) + " min"
         
     }

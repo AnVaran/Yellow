@@ -11,10 +11,8 @@ import UIKit
 class NewJogViewController: UIViewController {
     @IBOutlet weak var navigationBar: NavigationBar!
     
-    @IBOutlet weak var upView: UIView!
-    
     var currentJog: Jogs!
-    
+    let datePicker = UIDatePicker()
     
     @IBOutlet weak var distanceText: UITextField!
     @IBOutlet weak var timeText: UITextField!
@@ -26,7 +24,7 @@ class NewJogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        
         saveButton.isEnabled = false
         saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
         saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
@@ -38,14 +36,11 @@ class NewJogViewController: UIViewController {
         dateText.addTarget(self, action: #selector(textFieldIsActive), for: .editingDidBegin)
         dateText.addTarget(self, action: #selector(textFieldIsUnactive), for: .editingDidEnd)
 
+        addDatePicker()
         
         setUpEditScreen()
     }
     
-        
-    
-   
-   
     private func setUpEditScreen() {
         if currentJog != nil {
             
@@ -54,20 +49,57 @@ class NewJogViewController: UIViewController {
             timeText.text = String(currentJog.time ?? 0)
             saveButton.isEnabled = true
             saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
+            datePicker.date = FormatterDate.StringToDate(getString: currentJog.date ?? "")
         }
+    }
+    
+    private func addDatePicker() {
+        dateText.inputView = datePicker
+        datePicker.datePickerMode = .date
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolBar.setItems([flexSpace, doneButton], animated: true)
+        
+        dateText.inputAccessoryView = toolBar
+        datePicker.addTarget(self, action: #selector(dateChange), for: .valueChanged)
+    
+        let maxDate = Calendar.current.date(byAdding: .day, value: 0, to: Date())
+        datePicker.maximumDate = maxDate
+    }
+    
+    @objc func doneAction() {
+        view.endEditing(true)
+    }
+    
+    @objc func dateChange() {
+        getDateFromPicker()
+    }
+    
+    private func getDateFromPicker() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        dateText.text = formatter.string(from: datePicker.date)
+        saveButton.isEnabled = true
+        saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
     }
     
     func saveJog() {
         if currentJog != nil {
+            
             NetworkManager.changeJog(date: dateText.text ?? "",
-                                     time: Int(timeText.text ?? "") ?? 1,
+                                     time: Int(timeText.text ?? "") ?? 0,
                                      distance: Float(distanceText.text ?? "") ?? 0,
                                      jog_id: currentJog.id!)
         } else {
             
-            NetworkManager.addJog(date: dateText.text ?? "",
-                                  time: Int(timeText.text ?? "") ?? 0,
-                                  distance: Float(distanceText.text ?? "") ?? 0)
+            NetworkManager.addJog2(date: dateText.text ?? "",
+                                   time: Int(timeText.text ?? "") ?? 0,
+                                   distance: Float(distanceText.text ?? "") ?? 0)
         }
         
     }
@@ -91,14 +123,15 @@ extension NewJogViewController: UITextFieldDelegate {
        }
     
     @objc private func textFieldChanged() {
-           
+        
            if dateText.text?.isEmpty == false {
-               saveButton.isEnabled = true
-               saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                saveButton.isEnabled = true
+                saveButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
            } else {
                saveButton.isEnabled = false
-            saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
-            saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
+                saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
+                saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
            }
     }
     @objc private func textFieldIsActive() {

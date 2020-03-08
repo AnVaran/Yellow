@@ -11,7 +11,7 @@ import Foundation
 
 class FormatterDate {
     
-    static func date(getDate: Double) -> String {
+    static func dateToString(getDate: Double) -> String {
         
         
         let date = NSDate(timeIntervalSince1970: getDate)
@@ -19,5 +19,12 @@ class FormatterDate {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let formatterDate = dateFormatter.string(from: date as Date)
         return formatterDate
+    }
+    
+    static func StringToDate(getString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateFromString = dateFormatter.date(from: getString)!
+        return dateFromString
     }
 }

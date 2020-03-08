@@ -110,7 +110,7 @@ class NetworkManager: NSObject {
 
                     guard let time = field["date"] as? Double else { return }
                     
-                    let date = FormatterDate.date(getDate: time)
+                    let date = FormatterDate.dateToString(getDate: time)
                     
                     let jog = Jogs(date: date,
                                     distance: field["distance"] as? Float,
@@ -238,4 +238,5 @@ class NetworkManager: NSObject {
                }
                 task.resume()
        }
+    
 }

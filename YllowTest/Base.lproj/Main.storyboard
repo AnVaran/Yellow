@@ -99,7 +99,7 @@
             <objects>
                 <viewController id="ofi-dH-Lsx" customClass="JogsViewController" customModule="YllowTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b0P-qG-FGt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKz-dS-WW0" customClass="NavigationBar" customModule="YllowTest" customModuleProvider="target">
@@ -110,13 +110,13 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadRoundedSquareEmoticon" translatesAutoresizingMaskIntoConstraints="NO" id="yvM-zS-lkE">
-                                <rect key="frame" x="145" y="226" width="85" height="86"/>
+                                <rect key="frame" x="145" y="246" width="85" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="86" id="cTh-qg-SPc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing is there" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EW-EQ-571">
-                                <rect key="frame" x="105" y="342" width="164" height="29"/>
+                                <rect key="frame" x="105" y="362" width="164" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="d7a-nY-51M"/>
                                 </constraints>
@@ -125,7 +125,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-Jl-LeR" customClass="CustomButton" customModule="YllowTest" customModuleProvider="target">
-                                <rect key="frame" x="62" y="516" width="251" height="60"/>
+                                <rect key="frame" x="62" y="536" width="251" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8J1-Su-1Ay"/>
                                 </constraints>
@@ -149,7 +149,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Fb-3a-ArH">
-                                <rect key="frame" x="0.0" y="77" width="375" height="570"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="590"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="190" id="mD4-bj-gQJ" customClass="TableViewCell" customModule="YllowTest" customModuleProvider="target">
@@ -250,7 +250,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URd-Cv-iZ7">
-                                <rect key="frame" x="298" y="570" width="47" height="47"/>
+                                <rect key="frame" x="298" y="590" width="47" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="3bK-7p-aBw"/>
                                 </constraints>
@@ -330,7 +330,7 @@
                                 </state>
                                 <connections>
                                     <action selector="jogsButton:" destination="syQ-2J-Hce" eventType="touchUpInside" id="fVp-qn-GSn"/>
-                                    <segue destination="ofi-dH-Lsx" kind="show" id="ASX-xs-W7g"/>
+                                    <segue destination="hqE-1S-IP9" kind="unwind" unwindAction="cancelSegue:" id="SgC-Ow-QeI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bct-RC-d21">
@@ -341,7 +341,7 @@
                                 </state>
                                 <connections>
                                     <action selector="infoButton:" destination="syQ-2J-Hce" eventType="touchUpInside" id="q3N-Lg-BSD"/>
-                                    <segue destination="zYX-gy-P4c" kind="show" id="PV5-wv-PBG"/>
+                                    <segue destination="zYX-gy-P4c" kind="show" id="tZa-1Y-xcx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqy-U2-XcT">
@@ -381,7 +381,7 @@
             <objects>
                 <viewController id="cau-W7-e18" customClass="NewJogViewController" customModule="YllowTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3lt-ic-C29">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBl-z1-kGS" customClass="NavigationBar" customModule="YllowTest" customModuleProvider="target">
@@ -552,7 +552,6 @@
                         <outlet property="saveButton" destination="M7L-7r-geM" id="XCJ-6g-EPW"/>
                         <outlet property="timeText" destination="T1k-l8-aB8" id="I2E-5X-Gb3"/>
                         <outlet property="topConstraint" destination="u7W-P5-vQz" id="h2p-a4-rc4"/>
-                        <outlet property="upView" destination="fOF-jl-JaP" id="g4D-Nl-ZpT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zl0-bW-07s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -655,7 +654,6 @@
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SMK-SX-bQG"/>
-        <segue reference="ASX-xs-W7g"/>
+        <segue reference="48q-5x-cQT"/>
     </inferredMetricsTieBreakers>
 </document>
