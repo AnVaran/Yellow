@@ -207,9 +207,7 @@ class NetworkManager: NSObject {
     }
 
     static func addJog(date: String, time: Int, distance: Float) {
-            guard id != nil else { return }
-            guard let token = access_token else { return }
-           
+        guard let token = access_token else { return }
            let fetchUrl = Url.addUrl()
            let url = URL(string: fetchUrl)
            guard let requestUrl = url else { fatalError() }
@@ -219,8 +217,7 @@ class NetworkManager: NSObject {
            let params = ["date" : date,
                          "time" : time,
                          "distance" : distance] as [String : Any]
-    
-          
+          print(params)
            request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
            
            
@@ -231,7 +228,7 @@ class NetworkManager: NSObject {
                guard let data = data else { return }
                     
                do {
-                   //print(response)
+                   print(response)
                    let json = try JSONSerialization.jsonObject(with: data, options: [])
                    print(json)
                }

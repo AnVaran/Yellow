@@ -27,9 +27,6 @@ class MenuViewController: UIViewController {
     @IBAction func contactButton(_ sender: UIButton) {
     }
     
-    @IBAction func cancelButton(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
     
 
 }

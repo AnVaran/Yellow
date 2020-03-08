@@ -20,6 +20,13 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var sadLable: UILabel!
     @IBOutlet weak var firstJog: CustomButton!
     
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,11 +45,12 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
+    
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
         guard let newJogVC = segue.source as? NewJogViewController else { return }
         newJogVC.saveJog()
-        tableView.reloadData()
         
     }
     

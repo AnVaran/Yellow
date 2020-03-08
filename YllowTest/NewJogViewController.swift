@@ -20,15 +20,31 @@ class NewJogViewController: UIViewController {
     @IBOutlet weak var timeText: UITextField!
     @IBOutlet weak var dateText: UITextField!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
          
+        saveButton.isEnabled = false
+        saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
+        saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
+        
         navigationBar.delegate = self
         navigationBar.filterButton.setImage(#imageLiteral(resourceName: "filter"), for: .normal)
         
+        dateText.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        dateText.addTarget(self, action: #selector(textFieldIsActive), for: .editingDidBegin)
+        dateText.addTarget(self, action: #selector(textFieldIsUnactive), for: .editingDidEnd)
+
+        
         setUpEditScreen()
     }
+    
+        
+    
+   
    
     private func setUpEditScreen() {
         if currentJog != nil {
@@ -36,16 +52,19 @@ class NewJogViewController: UIViewController {
             dateText.text = currentJog.date
             distanceText.text = String(currentJog.distance ?? 0)
             timeText.text = String(currentJog.time ?? 0)
+            saveButton.isEnabled = true
+            saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         }
     }
     
     func saveJog() {
         if currentJog != nil {
             NetworkManager.changeJog(date: dateText.text ?? "",
-                                     time: Int(timeText.text ?? "") ?? 0,
+                                     time: Int(timeText.text ?? "") ?? 1,
                                      distance: Float(distanceText.text ?? "") ?? 0,
                                      jog_id: currentJog.id!)
         } else {
+            
             NetworkManager.addJog(date: dateText.text ?? "",
                                   time: Int(timeText.text ?? "") ?? 0,
                                   distance: Float(distanceText.text ?? "") ?? 0)
@@ -70,5 +89,25 @@ extension NewJogViewController: UITextFieldDelegate {
            textField.resignFirstResponder()
            return true
        }
+    
+    @objc private func textFieldChanged() {
+           
+           if dateText.text?.isEmpty == false {
+               saveButton.isEnabled = true
+               saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+           } else {
+               saveButton.isEnabled = false
+            saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
+            saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
+           }
+    }
+    @objc private func textFieldIsActive() {
+        
+        topConstraint.constant = 48
+    }
 
+    @objc private func textFieldIsUnactive() {
+        
+        topConstraint.constant = 82
+    }
 }

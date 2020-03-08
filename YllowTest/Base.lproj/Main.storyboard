@@ -99,7 +99,7 @@
             <objects>
                 <viewController id="ofi-dH-Lsx" customClass="JogsViewController" customModule="YllowTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b0P-qG-FGt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKz-dS-WW0" customClass="NavigationBar" customModule="YllowTest" customModuleProvider="target">
@@ -110,13 +110,13 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadRoundedSquareEmoticon" translatesAutoresizingMaskIntoConstraints="NO" id="yvM-zS-lkE">
-                                <rect key="frame" x="145" y="246" width="85" height="86"/>
+                                <rect key="frame" x="145" y="226" width="85" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="86" id="cTh-qg-SPc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing is there" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EW-EQ-571">
-                                <rect key="frame" x="105" y="362" width="164" height="29"/>
+                                <rect key="frame" x="105" y="342" width="164" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="d7a-nY-51M"/>
                                 </constraints>
@@ -125,7 +125,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-Jl-LeR" customClass="CustomButton" customModule="YllowTest" customModuleProvider="target">
-                                <rect key="frame" x="62" y="536" width="251" height="60"/>
+                                <rect key="frame" x="62" y="516" width="251" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8J1-Su-1Ay"/>
                                 </constraints>
@@ -149,7 +149,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Fb-3a-ArH">
-                                <rect key="frame" x="0.0" y="77" width="375" height="590"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="570"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="190" id="mD4-bj-gQJ" customClass="TableViewCell" customModule="YllowTest" customModuleProvider="target">
@@ -250,13 +250,13 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URd-Cv-iZ7">
-                                <rect key="frame" x="298" y="590" width="47" height="47"/>
+                                <rect key="frame" x="298" y="570" width="47" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="3bK-7p-aBw"/>
                                 </constraints>
                                 <state key="normal" image="add"/>
                                 <connections>
-                                    <action selector="addJog:" destination="ofi-dH-Lsx" eventType="touchUpInside" id="eo2-CG-cav"/>
+                                    <segue destination="cau-W7-e18" kind="show" id="48q-5x-cQT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -291,7 +291,6 @@
                         <outlet property="sadLable" destination="5EW-EQ-571" id="tP6-gL-zt2"/>
                         <outlet property="tableView" destination="4Fb-3a-ArH" id="Vs2-9z-9EB"/>
                         <outlet property="viewModel" destination="kJc-bs-RJC" id="caV-cg-3EJ"/>
-                        <segue destination="cau-W7-e18" kind="show" identifier="addJog" id="ZeU-Fa-Nd8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nV1-70-oI4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -320,7 +319,7 @@
                                 <color key="tintColor" red="0.69019607843137254" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="xmark" catalog="system"/>
                                 <connections>
-                                    <action selector="cancelButton:" destination="syQ-2J-Hce" eventType="touchUpInside" id="s1z-QC-n7v"/>
+                                    <segue destination="hqE-1S-IP9" kind="unwind" unwindAction="cancelSegue:" id="17u-RZ-wwc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBh-AE-Ucf">
@@ -373,6 +372,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSF-nl-TS1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hqE-1S-IP9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1141.5999999999999" y="867.61619190404804"/>
         </scene>
@@ -381,7 +381,7 @@
             <objects>
                 <viewController id="cau-W7-e18" customClass="NewJogViewController" customModule="YllowTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3lt-ic-C29">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBl-z1-kGS" customClass="NavigationBar" customModule="YllowTest" customModuleProvider="target">
@@ -392,10 +392,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOF-jl-JaP">
-                                <rect key="frame" x="34" y="159" width="307" height="385"/>
+                                <rect key="frame" x="34" y="159" width="307" height="365"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q46-uE-fTn" customClass="CustomView" customModule="YllowTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2" width="307" height="381"/>
+                                        <rect key="frame" x="0.0" y="2" width="307" height="361"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhg-QF-s8U">
                                                 <rect key="frame" x="268" y="21" width="18" height="22"/>
@@ -473,22 +473,15 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7L-7r-geM" customClass="CustomButton" customModule="YllowTest" customModuleProvider="target">
-                                                <rect key="frame" x="35" y="310.5" width="237" height="33.5"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7L-7r-geM" customClass="CustomButton" customModule="YllowTest" customModuleProvider="target">
+                                                <rect key="frame" x="35" y="290" width="237" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="237" id="CgE-MQ-SSQ"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                                 <color key="tintColor" red="0.2257450567" green="0.0" blue="0.045052273550000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Save">
-                                                            <attributes>
-                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="18"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -498,7 +491,7 @@
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -533,6 +526,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Q46-uE-fTn" secondAttribute="trailing" id="770-cd-deF"/>
                                     <constraint firstAttribute="bottom" secondItem="Q46-uE-fTn" secondAttribute="bottom" constant="2" id="EQh-fc-FbO"/>
+                                    <constraint firstAttribute="height" constant="365" id="JBH-oQ-nnl"/>
                                     <constraint firstItem="Q46-uE-fTn" firstAttribute="leading" secondItem="fOF-jl-JaP" secondAttribute="leading" id="Tni-EK-8rG"/>
                                     <constraint firstItem="Q46-uE-fTn" firstAttribute="top" secondItem="fOF-jl-JaP" secondAttribute="top" constant="2" id="rbC-6L-fyb"/>
                                 </constraints>
@@ -545,7 +539,6 @@
                             <constraint firstItem="CBl-z1-kGS" firstAttribute="trailing" secondItem="SBy-Ny-Njc" secondAttribute="trailing" id="GQE-l5-UUR"/>
                             <constraint firstItem="CBl-z1-kGS" firstAttribute="leading" secondItem="SBy-Ny-Njc" secondAttribute="leading" id="IdR-wy-och"/>
                             <constraint firstItem="CBl-z1-kGS" firstAttribute="top" secondItem="SBy-Ny-Njc" secondAttribute="top" id="OqW-SR-xf7"/>
-                            <constraint firstItem="SBy-Ny-Njc" firstAttribute="bottom" secondItem="fOF-jl-JaP" secondAttribute="bottom" constant="123" id="YPM-rO-d6A"/>
                             <constraint firstItem="fOF-jl-JaP" firstAttribute="leading" secondItem="SBy-Ny-Njc" secondAttribute="leading" constant="34" id="pWK-h5-sfa"/>
                             <constraint firstItem="fOF-jl-JaP" firstAttribute="top" secondItem="CBl-z1-kGS" secondAttribute="bottom" constant="82" id="u7W-P5-vQz"/>
                         </constraints>
@@ -556,7 +549,9 @@
                         <outlet property="dateText" destination="F2J-jl-Dqa" id="Yz7-uS-Ihc"/>
                         <outlet property="distanceText" destination="7G1-1t-baX" id="G0M-RL-71M"/>
                         <outlet property="navigationBar" destination="CBl-z1-kGS" id="cNn-XY-ujA"/>
+                        <outlet property="saveButton" destination="M7L-7r-geM" id="XCJ-6g-EPW"/>
                         <outlet property="timeText" destination="T1k-l8-aB8" id="I2E-5X-Gb3"/>
+                        <outlet property="topConstraint" destination="u7W-P5-vQz" id="h2p-a4-rc4"/>
                         <outlet property="upView" destination="fOF-jl-JaP" id="g4D-Nl-ZpT"/>
                     </connections>
                 </viewController>
@@ -660,7 +655,7 @@
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZeU-Fa-Nd8"/>
-        <segue reference="wDe-cM-djC"/>
+        <segue reference="SMK-SX-bQG"/>
+        <segue reference="ASX-xs-W7g"/>
     </inferredMetricsTieBreakers>
 </document>
