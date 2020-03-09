@@ -34,6 +34,7 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         getData()
+        
     }
     
     override func viewDidLoad() {
@@ -153,17 +154,6 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return [deleteAction]
     }
-    
-    private func search() {
-        for jog in viewModel.jogs {
-            if jog.date! >= dateFromTextField.text! && jog.date! <= dateToTextField.text! {
-                filteredJogs.append(jog)
-            }
-        }
-        print(filteredJogs)
-        tableView.reloadData()
-    
-    }
 }
 
 extension JogsViewController: NavigationBarDelegate {
@@ -176,6 +166,8 @@ extension JogsViewController: NavigationBarDelegate {
     func filterAction() {
         
         isFiltering = true
+         
+        filteredJogs.removeAll()
         
         for jog in viewModel.jogs {
             if jog.date! >= dateFromTextField.text! && jog.date! <= dateToTextField.text! {
