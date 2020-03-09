@@ -39,6 +39,5 @@ extension InitialViewController: NavigationBarDelegate {
         let menuViewController = storyboard.instantiateViewController(identifier: "menuViewController") as! MenuViewController
         self.present(menuViewController, animated: true, completion: nil)
         
-        
     }
 }

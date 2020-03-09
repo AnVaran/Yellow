@@ -10,6 +10,23 @@ import UIKit
 
 class JogsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let datePickerTo = UIDatePicker()
+    let datePickerFrom = UIDatePicker()
+    private var filteredJogs = [Jogs]()
+    
+    private var searchTextFieldsIsEmpty: Bool {
+        if let text = dateToTextField.text {
+            return text.isEmpty
+        } else if let text = dateFromTextField.text {
+            return text.isEmpty
+        } else {
+            return false
+        }
+    }
+    
+//    private var isFiltering: Bool {
+//        return (datePickerFrom.isActive || datePickerTo.isActive) && !searchTextFieldsIsEmpty
+//    }
     
     @IBOutlet weak var navigationBar: NavigationBar!
     
@@ -19,8 +36,10 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var sadImage: UIImageView!
     @IBOutlet weak var sadLable: UILabel!
     @IBOutlet weak var firstJog: CustomButton!
-    
-    
+
+    @IBOutlet weak var dateToTextField: UITextField!
+    @IBOutlet weak var dateFromTextField: UITextField!
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -31,6 +50,8 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         getData()
+        addDatePicker(dateText: dateToTextField, datePicker: datePickerTo)
+        addDatePicker(dateText: dateFromTextField, datePicker: datePickerFrom)
         
         navigationBar.delegate = self
         tableView.delegate = self
@@ -44,6 +65,43 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+    
+    @objc private func addDatePicker(dateText: UITextField, datePicker: UIDatePicker){
+           dateText.inputView = datePicker
+           datePicker.datePickerMode = .date
+           let toolBar = UIToolbar()
+           toolBar.sizeToFit()
+           let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+           let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+           
+           toolBar.setItems([flexSpace, doneButton], animated: true)
+           
+           dateText.inputAccessoryView = toolBar
+            if dateText == dateToTextField {
+                datePicker.addTarget(self, action: #selector(dateToTextFieldChange), for:   .valueChanged)
+            } else if dateText == dateFromTextField {
+
+                datePicker.addTarget(self, action: #selector(dateFromTextFieldChange), for: .valueChanged)
+            }
+            let maxDate = Calendar.current.date(byAdding: .day, value: 0, to: Date())
+            datePicker.maximumDate = maxDate
+    }
+       
+       @objc func doneAction() {
+           view.endEditing(true)
+       }
+       
+       @objc func dateToTextFieldChange() {
+           let formatter = DateFormatter()
+           formatter.dateFormat = "dd.MM.yyyy"
+           dateToTextField.text = formatter.string(from: datePickerTo.date)
+       }
+    
+       @objc func dateFromTextFieldChange() {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            dateFromTextField.text = formatter.string(from: datePickerFrom.date)
+        }
     
     
     

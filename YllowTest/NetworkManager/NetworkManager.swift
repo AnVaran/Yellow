@@ -217,7 +217,7 @@ class NetworkManager: NSObject {
            let params = ["date" : date,
                          "time" : time,
                          "distance" : distance] as [String : Any]
-          print(params)
+         print(params)
            request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
            
            
@@ -228,7 +228,7 @@ class NetworkManager: NSObject {
                guard let data = data else { return }
                     
                do {
-                   print(response)
+                print(request)
                    let json = try JSONSerialization.jsonObject(with: data, options: [])
                    print(json)
                }

@@ -27,4 +27,14 @@ class FormatterDate {
         let dateFromString = dateFormatter.date(from: getString)!
         return dateFromString
     }
+    
+    static func StringToSttring(_ date: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateFromString = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dateFormatter.string(from: dateFromString!)
+    }
 }

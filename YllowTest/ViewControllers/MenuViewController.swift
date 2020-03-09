@@ -10,15 +10,20 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
+    @IBOutlet weak var jogsButton: UIButton!
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func jogsButton(_ sender: UIButton) {
+    @IBAction func cancelButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
-        
+    
+    @IBAction func jogsButton(_ sender: UIButton) {
+       
     }
     
     @IBAction func infoButton(_ sender: UIButton) {

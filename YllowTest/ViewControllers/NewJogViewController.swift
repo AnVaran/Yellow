@@ -25,9 +25,7 @@ class NewJogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        saveButton.isEnabled = false
-        saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
-        saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
+        saveButtonIsAnenabled()
         
         navigationBar.delegate = self
         navigationBar.filterButton.setImage(#imageLiteral(resourceName: "filter"), for: .normal)
@@ -41,15 +39,25 @@ class NewJogViewController: UIViewController {
         setUpEditScreen()
     }
     
+    private func saveButtonIsEnabled() {
+        saveButton.isEnabled = true
+        saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
+    }
+    
+    private func saveButtonIsAnenabled() {
+        saveButton.isEnabled = false
+        saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
+        saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
+    }
+    
     private func setUpEditScreen() {
         if currentJog != nil {
             
             dateText.text = currentJog.date
             distanceText.text = String(currentJog.distance ?? 0)
             timeText.text = String(currentJog.time ?? 0)
-            saveButton.isEnabled = true
-            saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
+            saveButtonIsEnabled()
             datePicker.date = FormatterDate.StringToDate(getString: currentJog.date ?? "")
         }
     }
@@ -83,9 +91,7 @@ class NewJogViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         dateText.text = formatter.string(from: datePicker.date)
-        saveButton.isEnabled = true
-        saveButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
+        saveButtonIsEnabled()
     }
     
     func saveJog() {
@@ -96,10 +102,13 @@ class NewJogViewController: UIViewController {
                                      distance: Float(distanceText.text ?? "") ?? 0,
                                      jog_id: currentJog.id!)
         } else {
-            
-            NetworkManager.addJog2(date: dateText.text ?? "",
-                                   time: Int(timeText.text ?? "") ?? 0,
-                                   distance: Float(distanceText.text ?? "") ?? 0)
+            let newDateString = FormatterDate.StringToSttring(dateText.text!)
+            print(timeText.text)
+            print(distanceText.text)
+            print(newDateString)
+            NetworkManager.addJog(date: newDateString,
+                                  time: Int(timeText.text ?? "") ?? 0,
+                                  distance: Float(distanceText.text ?? "") ?? 0)
         }
         
     }
@@ -125,13 +134,10 @@ extension NewJogViewController: UITextFieldDelegate {
     @objc private func textFieldChanged() {
         
            if dateText.text?.isEmpty == false {
-                saveButton.isEnabled = true
-                saveButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                saveButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .disabled)
+                saveButtonIsEnabled()
            } else {
-               saveButton.isEnabled = false
-                saveButton.layer.borderColor = #colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1)
-                saveButton.setTitleColor(#colorLiteral(red: 0.2980392157, green: 0.5215686275, blue: 0.05882352941, alpha: 1), for: .disabled)
+                saveButtonIsAnenabled()
+                
            }
     }
     @objc private func textFieldIsActive() {
