@@ -103,9 +103,6 @@ class NewJogViewController: UIViewController {
                                      jog_id: currentJog.id!)
         } else {
             let newDateString = FormatterDate.StringToSttring(dateText.text!)
-            print(timeText.text)
-            print(distanceText.text)
-            print(newDateString)
             NetworkManager.addJog(date: newDateString,
                                   time: Int(timeText.text ?? "") ?? 0,
                                   distance: Float(distanceText.text ?? "") ?? 0)

@@ -14,19 +14,9 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     let datePickerFrom = UIDatePicker()
     private var filteredJogs = [Jogs]()
     
-    private var searchTextFieldsIsEmpty: Bool {
-        if let text = dateToTextField.text {
-            return text.isEmpty
-        } else if let text = dateFromTextField.text {
-            return text.isEmpty
-        } else {
-            return false
-        }
-    }
     
-//    private var isFiltering: Bool {
-//        return (datePickerFrom.isActive || datePickerTo.isActive) && !searchTextFieldsIsEmpty
-//    }
+    
+    private var isFiltering: Bool = false
     
     @IBOutlet weak var navigationBar: NavigationBar!
     
@@ -53,11 +43,12 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         addDatePicker(dateText: dateToTextField, datePicker: datePickerTo)
         addDatePicker(dateText: dateFromTextField, datePicker: datePickerFrom)
         
+        
         navigationBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+
     private func getData() {
         viewModel.fetchJogs { [weak self] in
             DispatchQueue.main.async {
@@ -115,9 +106,6 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func cancelSegue(_ segue: UIStoryboardSegue) {
     }
     
-    @IBAction func addJog(_ sender: UIButton) {
-        performSegue(withIdentifier: "addJog", sender: self)
-    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -139,19 +127,22 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        if isFiltering {
+            return filteredJogs.count
+        }
        return viewModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        viewModel.cell(cell: cell, indexPath: indexPath) 
+        viewModel.cell(cell: cell, indexPath: indexPath, filterJog: filteredJogs, isFiltering: isFiltering)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let jog = viewModel.jogs[indexPath.row]
+        let jog = isFiltering ? filteredJogs[indexPath.row] : viewModel.jogs[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .default, title: "delete") {
             (_, _) in
             guard let jog_id = jog.id else { return }
@@ -162,6 +153,17 @@ class JogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return [deleteAction]
     }
+    
+    private func search() {
+        for jog in viewModel.jogs {
+            if jog.date! >= dateFromTextField.text! && jog.date! <= dateToTextField.text! {
+                filteredJogs.append(jog)
+            }
+        }
+        print(filteredJogs)
+        tableView.reloadData()
+    
+    }
 }
 
 extension JogsViewController: NavigationBarDelegate {
@@ -169,5 +171,21 @@ extension JogsViewController: NavigationBarDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let menuViewController = storyboard.instantiateViewController(identifier: "menuViewController") as! MenuViewController
         self.present(menuViewController, animated: true, completion: nil)
+    }
+    
+    func filterAction() {
+        
+        isFiltering = true
+        
+        for jog in viewModel.jogs {
+            if jog.date! >= dateFromTextField.text! && jog.date! <= dateToTextField.text! {
+                filteredJogs.append(jog)
+            }
+        }
+        isFiltering = false
+        print(filteredJogs)
+        tableView.reloadData()
+        
+        
     }
 }

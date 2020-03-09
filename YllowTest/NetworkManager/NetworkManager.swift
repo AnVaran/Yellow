@@ -218,10 +218,12 @@ class NetworkManager: NSObject {
                          "time" : time,
                          "distance" : distance] as [String : Any]
          print(params)
-           request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
            
            
-           request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("aplication/json", forHTTPHeaderField: "content-type")
+        
            request.httpMethod = "POST"
             
            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in

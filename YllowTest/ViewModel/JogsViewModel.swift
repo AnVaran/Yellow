@@ -19,9 +19,9 @@ class JogsViewModel: NSObject {
         }
     }
 
-    func cell(cell: TableViewCell, indexPath: IndexPath) {
+    func cell(cell: TableViewCell, indexPath: IndexPath, filterJog: [Jogs], isFiltering: Bool) {
         
-        let jog = jogs[indexPath.row]
+        let jog = isFiltering ? filterJog[indexPath.row] : jogs[indexPath.row]
 
         cell.dateLable?.text = jog.date ?? "Date"
         cell.distanceLable?.text = String(jog.distance ?? 0) + " km"
